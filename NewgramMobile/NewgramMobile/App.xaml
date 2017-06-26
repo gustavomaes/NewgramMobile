@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:c="clr-namespace:NewgramMobile.Converters;assembly=NewgramMobile"                                                             
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        x:Class="NewgramMobile.App">
+
+  <Application.Resources>
+
+    <ResourceDictionary>
+
+      <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+      <c:ItemAppearingEventArgsConverter x:Key="itemAppearingEventArgsConverter" />
+
+      <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="White" />
+      </Style>
+
+      <Style TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="White" />
+      </Style>
+
+      <Style x:Key="LoadingPage" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Opacity" Value="0.8" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+      </Style>
+
+      <Style TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Yellow" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="WidthRequest" Value="200" />
+      </Style>
+
+
+      <Style x:Key="Importante" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Red" />
+        <Setter Property="TextColor" Value="Yellow" />
+        <Setter Property="WidthRequest" Value="200" />
+      </Style>
+
+      <Style x:Key="Pequeno" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="#F8F8FF" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="FontSize" Value="10"/>
+      </Style>
+
+      <Style TargetType="Label" >
+        <Setter Property="TextColor" Value="#848484" />
+        <Setter Property="FontSize" Value="12"/>
+      </Style>
+
+      <Style x:Key="Titulo" TargetType="Label" >
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+      </Style>
+
+      <Style x:Key="Titulo2" TargetType="Label" >
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+      </Style>
+
+      <Style x:Key="Titulo3" TargetType="Label" >
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+      </Style>
+
+    </ResourceDictionary>
+  </Application.Resources>
+</prism:PrismApplication>

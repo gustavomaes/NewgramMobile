@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NewgramMobile;assembly=NewgramMobile"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:imagemCircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="NewgramMobile.Views.BuscaPage"
+             x:Name="Root"
+             Title="{Binding Title}">
+
+    <Grid>
+
+        <StackLayout>
+            <SearchBar Text="{Binding Termo}" 
+                       Placeholder="Pesquisa usuário"
+                       SearchCommand="{Binding PesquisaCommand}"
+                       IsVisible="{Binding BuscaVisible}"/>
+
+            <ListView ItemsSource="{Binding Usuarios}" 
+                      HasUnevenRows="True" 
+                      HeightRequest="-1" 
+                      CachingStrategy="RecycleElement" 
+                      SeparatorColor="Transparent">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <!--Foto do Perfil-->
+                                <imagemCircular:CircleImage Source="{Binding URLFoto}" Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Center" />
+                                <!--<Image Source="{Binding FotoURL}" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></Image>-->
+
+                                <!--Nome-->
+                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Nome}" FontSize="Medium" VerticalOptions="Center"  />
+
+                                <StackLayout IsVisible="{Binding NaoMeu}"  HorizontalOptions="End" VerticalOptions="Center">
+
+                                    <StackLayout IsVisible="{Binding NaoSigo}" BackgroundColor="Blue" Padding="3" Margin="3" VerticalOptions="Center">
+                                        <Label Text="Seguir" TextColor="White" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding BindingContext.SeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+
+                                    <StackLayout IsVisible="{Binding Sigo}" BackgroundColor="Red" Padding="3" Margin="3" VerticalOptions="Center">
+                                        <Label Text="Deixar de Seguir" TextColor="White" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding BindingContext.DeixarSeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+        </StackLayout>
+
+        <local:Loading/>
+
+    </Grid>
+
+</ContentPage>

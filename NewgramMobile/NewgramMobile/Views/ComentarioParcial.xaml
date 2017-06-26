@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewgramMobile.Views.ComentarioParcial"
+             xmlns:imagemCircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             BackgroundColor="#ffe6e6">
+
+    <StackLayout 
+        BackgroundColor="White"
+        Padding="3">
+
+        <StackLayout Orientation="Horizontal" Padding="2">
+            <imagemCircular:CircleImage Aspect="AspectFill" Source="{Binding UsuarioDados.URLFoto}" WidthRequest="20" HeightRequest="20"></imagemCircular:CircleImage>
+            <Label HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding UsuarioDados.Nome}" TextColor="Black" LineBreakMode="TailTruncation" />
+            <Label HorizontalOptions="End" VerticalOptions="CenterAndExpand" Text="{Binding Data, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Green" />
+        </StackLayout>
+
+        <Label Text="{Binding Texto}" TextColor="Black" LineBreakMode="WordWrap" />
+
+        <!--DENUNCIAR-->
+        <Label Text="Denunciar" TextColor="Red" HorizontalOptions="End" FontSize="Micro" IsVisible="{Binding NaoMeu}">
+            <!--<Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Denunciar" NumberOfTapsRequired="1" />
+            </Label.GestureRecognizers>-->
+        </Label>
+
+    </StackLayout>
+    
+</StackLayout>

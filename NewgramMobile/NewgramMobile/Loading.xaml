@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewgramMobile.Loading"
+             BackgroundColor="Transparent"
+             x:Name="LoadBase"
+             IsVisible="{Binding LoadingVisible}"
+             IsEnabled="{Binding LoadingEnable}">
+
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+
+        <!-- FUNDO -->
+        <StackLayout Style="{StaticResource LoadingPage}"/>
+
+        <!-- Loading + Texto-->
+        <StackLayout VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand" 
+                     BackgroundColor="Transparent">
+
+            <ActivityIndicator x:Name="actLoading" 
+                               VerticalOptions="EndAndExpand" 
+                               HorizontalOptions="Center" 
+                               Color="Blue" 
+                               IsRunning="{Binding ActionIsRunning}" 
+                               IsVisible="{Binding ActionIsVisible}" />
+            
+            <Label x:Name="txtLoading" 
+                   VerticalOptions="StartAndExpand"  
+                   HorizontalOptions="Center" 
+                   TextColor="Black" 
+                   IsVisible="{Binding TextIsVisible}" 
+                   IsEnabled="{Binding TextIsEnabled}" 
+                   Text="{Binding Text}"/>
+
+        </StackLayout>
+    </Grid>
+</StackLayout>

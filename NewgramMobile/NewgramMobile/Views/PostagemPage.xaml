@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NewgramMobile"             
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="NewgramMobile.Views.PostagemPage">
+
+    <Grid>
+
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <StackLayout Padding="40">
+
+                <Frame OutlineColor="Red">
+                    <Image x:Name="imgPostar" Source="{Binding Imagem}" VerticalOptions="CenterAndExpand" />
+                </Frame>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding   }" Text="Câmera" Grid.Column="0" Style="{StaticResource Pequeno}" />
+                    <Button Command="{Binding BuscaFotoCommand}" Text="Biblioteca" Grid.Column="1" Style="{StaticResource Pequeno}" />
+                </Grid>
+
+                <Editor Keyboard="Text" HeightRequest="100" TextColor="Black" BackgroundColor="#FFFFCC" Text="{Binding Post.Descricao}"></Editor>
+
+                <Button Text="Postar" Style="{StaticResource Importante}" Command="{Binding PostarCommand}"/>
+
+            </StackLayout>
+
+        </ScrollView>
+
+        <local:Loading x:Name="Load" />
+
+
+    </Grid>
+</ContentPage>
