@@ -30,11 +30,29 @@
                             <StackLayout Orientation="Horizontal">
 
                                 <!--Foto do Perfil-->
-                                <imagemCircular:CircleImage Source="{Binding URLFoto}" Aspect="AspectFill" WidthRequest="50" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Center" />
-                                <!--<Image Source="{Binding FotoURL}" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></Image>-->
+                                <imagemCircular:CircleImage Source="{Binding URLFoto}" 
+                                                            Aspect="AspectFill" 
+                                                            WidthRequest="50" 
+                                                            HeightRequest="50" 
+                                                            HorizontalOptions="Start" 
+                                                            VerticalOptions="Center">
+                                    <imagemCircular:CircleImage.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                CommandParameter="{Binding .}" />
+                                    </imagemCircular:CircleImage.GestureRecognizers>
+                                </imagemCircular:CircleImage>
 
                                 <!--Nome-->
-                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Nome}" FontSize="Medium" VerticalOptions="Center"  />
+                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Nome}" FontSize="Medium" VerticalOptions="Center" >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                CommandParameter="{Binding .}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
 
                                 <StackLayout IsVisible="{Binding NaoMeu}"  HorizontalOptions="End" VerticalOptions="Center">
 

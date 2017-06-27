@@ -67,24 +67,32 @@ namespace NewgramMobile.ViewModels
                 await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro inesperado. Tente novamente mais tarde.", "OK");
             }
 
-            //Efetua o Login
-            using (APIHelper API = new APIHelper())
+            try
             {
-                App.UsuarioLogado = await API.POST<Usuario>("api/usuario/login", Usuario);
-
-                if (App.Logado)
+                using (APIHelper API = new APIHelper())
                 {
-                    Dictionary<String, String> Headers = API.HeadersAllRequests;
-                    //Add Token
-                    if (API.HeadersLastResponse.ContainsKey("token"))
-                        Headers.Add("token", API.HeadersLastResponse["token"]);
+                    App.UsuarioLogado = await API.POST<Usuario>("api/usuario/login", Usuario);
 
-                    API.HeadersAllRequests = Headers;//SET
+                    if (App.Logado)
+                    {
+                        Dictionary<String, String> Headers = API.HeadersAllRequests;
+                        //Add Token
+                        if (API.HeadersLastResponse.ContainsKey("token"))
+                            Headers.Add("token", API.HeadersLastResponse["token"]);
 
-                    await _navigationService.NavigateAsync("NavigationPage/HomePage");
+                        API.HeadersAllRequests = Headers;//SET
 
+                        await _navigationService.NavigateAsync("app:///NavigationPage/HomePage");
+
+                    }
                 }
             }
+            catch (Exception EX)
+            {
+                await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro ao entrar, verifique seus dados e tente novamente." + EX, "OK");
+                Finaliza();
+            }
+            
         }
         
         public void OnNavigatedFrom(NavigationParameters parameters)

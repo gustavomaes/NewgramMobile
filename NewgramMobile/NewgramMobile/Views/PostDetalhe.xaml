@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:NewgramMobile.Views"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             x:Name="Root"
              x:Class="NewgramMobile.Views.PostDetalhe">
 
     <ContentPage.Content>
@@ -36,9 +37,6 @@
                                    Text="{Binding Post.Data, StringFormat='{0:dd/MM HH:mm}'}" 
                                    TextColor="Green" />
 
-                            <!--<StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ClickUsuario" />
-                            </StackLayout.GestureRecognizers>-->
                         </StackLayout>
 
                         <StackLayout Orientation="Vertical" >
@@ -89,7 +87,32 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <local:ComentarioParcial BindingContext="{Binding .}" />
+                            <StackLayout BackgroundColor="White"
+                                         Padding="3">
+
+                                <StackLayout Orientation="Horizontal" Padding="2">
+                                    <imagemCircular:CircleImage Aspect="AspectFill" Source="{Binding UsuarioDados.URLFoto}" WidthRequest="20" HeightRequest="20"></imagemCircular:CircleImage>
+                                    <Label HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding UsuarioDados.Nome}" TextColor="Black" LineBreakMode="TailTruncation" />
+                                    <Label HorizontalOptions="End" VerticalOptions="CenterAndExpand" Text="{Binding Data, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Green" />
+                                    
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                          Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    
+                                </StackLayout>
+
+                                <Label Text="{Binding Texto}" TextColor="Black" LineBreakMode="WordWrap" />
+
+                                <!--DENUNCIAR-->
+                                <Label Text="Denunciar" TextColor="Red" HorizontalOptions="End" FontSize="Micro" IsVisible="{Binding NaoMeu}">
+                                    <!--<Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Denunciar" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>-->
+                                </Label>
+
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

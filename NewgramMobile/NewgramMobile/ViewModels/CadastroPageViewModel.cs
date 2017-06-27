@@ -62,25 +62,34 @@ namespace NewgramMobile.ViewModels
                 await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro. Tente novamente mais tarde.", "OK");
             }
 
-            using (APIHelper API = new APIHelper())
+            try
             {
-                App.UsuarioLogado = await API.POST<Usuario>("api/usuario", Cadastro);
-
-                if (App.Logado)
+                using (APIHelper API = new APIHelper())
                 {
-                    Dictionary<String, String> Headers = API.HeadersAllRequests;
+                    App.UsuarioLogado = await API.POST<Usuario>("api/usuario", Cadastro);
 
-                    //Add token usuário
-                    if (API.HeadersLastResponse.ContainsKey("token"))
-                        Headers.Add("token", API.HeadersLastResponse["token"]);
+                    if (App.Logado)
+                    {
+                        Dictionary<String, String> Headers = API.HeadersAllRequests;
 
-                    API.HeadersAllRequests = Headers;
+                        //Add token usuário
+                        if (API.HeadersLastResponse.ContainsKey("token"))
+                            Headers.Add("token", API.HeadersLastResponse["token"]);
 
-                    await _navigationService.NavigateAsync("NavigationPage/HomePage");
+                        API.HeadersAllRequests = Headers;
+
+                        await _navigationService.NavigateAsync("app:///NavigationPage/HomePage");
+                    }
+
+
                 }
-
-
             }
+            catch (Exception)
+            {
+                await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro ao cadastrar. Tente novamente,", "OK");
+                Finaliza();
+            }
+            
         }
 
         async void ExecuteVoltarCommand(object obj)

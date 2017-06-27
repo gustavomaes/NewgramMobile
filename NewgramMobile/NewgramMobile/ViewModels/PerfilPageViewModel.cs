@@ -64,9 +64,11 @@ namespace NewgramMobile.ViewModels
 
             HeightDP = App.LarguraDP / 3;
 
+            //TODO - Remover depois de acrescentar MasterPage
             Usuario = App.UsuarioLogado;
 
             IdUsuario = Usuario.Id;
+            //TODO - Remover depois de acrescentar MasterPage
 
             ItemTappedCommand = new Command<Post>(ExecuteItemTappedCommand);
 
@@ -79,6 +81,7 @@ namespace NewgramMobile.ViewModels
             SeguidoresCommand = new Command(ExecuteSeguidoresCommand);
             AlterarCommand = new Command(ExecuteAlterarCommand);
 
+            //REMOVER
             BuscaDadosUsuario();
             BuscaPostsUsuario();
         }
@@ -274,7 +277,7 @@ namespace NewgramMobile.ViewModels
                 {
                     //Passar Dados 
                     Usuario.URLFoto = await API.PUT<String>("api/usuario/foto", FotoNova);
-                    App.UsuarioLogado.URLFoto = Usuario.URLFoto;
+                    App.PreferenceAdd("UsuarioLogado", Usuario);
                 }
 
                 ImagemBytes = null;
@@ -287,8 +290,17 @@ namespace NewgramMobile.ViewModels
         {
         }
 
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public async void OnNavigatedTo(NavigationParameters parameters)
         {
+            if (parameters["usuario"] != null)
+                Usuario = (Usuario)parameters["usuario"];
+            else
+                Usuario = App.UsuarioLogado;
+
+            IdUsuario = Usuario.Id;
+
+            await BuscaDadosUsuario();
+            await BuscaPostsUsuario();
         }
 
         public void OnNavigatingTo(NavigationParameters parameters)

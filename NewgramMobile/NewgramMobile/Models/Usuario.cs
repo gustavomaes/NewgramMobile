@@ -31,11 +31,15 @@ namespace NewgramMobile.Models
 
         public string Senha { get; set; }
 
-        string _URLFoto;
+        private string _URLFoto;
         public string URLFoto
         {
             get { return _URLFoto; }
-            set { SetProperty(ref _URLFoto, value); }
+            set
+            {
+                _URLFoto = value;
+                RaisePropertyChanged("URLFoto");
+            }
         }
 
 

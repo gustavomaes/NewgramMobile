@@ -41,6 +41,8 @@ namespace NewgramMobile.ViewModels
         public DelegateCommand<Post> ItemTappedCommand { get; set; }
         public DelegateCommand<Post> ItemAppearingCommand { get; set; }
 
+        public DelegateCommand<Post> CurtirCommand { get; }
+        public DelegateCommand<Post> PerfilCommand { get; }
 
         public int Pagina { get; set; }
         public int QuantidadePagina { get; set; }
@@ -60,11 +62,58 @@ namespace NewgramMobile.ViewModels
             ItemTappedCommand = new DelegateCommand<Post>(ExecuteItemTappedCommand);
             ItemAppearingCommand = new DelegateCommand<Post>(ExecuteItemAppearingCommand);
 
+            CurtirCommand = new DelegateCommand<Post>(ExecuteCurtirCommand);
+            PerfilCommand = new DelegateCommand<Post>(ExecutePerfilCommand);
+
             BuscaPostsCache();
             BuscaPosts();
 
         }
-        
+
+        async void ExecutePerfilCommand(Post post)
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("usuario", post.UsuarioDados);
+
+            await _navigationService.NavigateAsync("NavigationPage/PerfilPage", navigationParams);
+        }
+
+        async void ExecuteCurtirCommand(Post post)
+        {
+            if (post.EuCurti)
+            {
+                try
+                {
+                    //API
+                    using (APIHelper API = new APIHelper())
+                    {
+                        await API.PUT("api/posts/curtir/" + post.Id + "/?Curtir=false", null);
+                    }
+
+                    post.EuCurti = false;
+                    post.QuantidadeCurtidas--;
+                }
+                catch (HTTPException EX) { }
+                catch (Exception EX) { }
+            }
+            else
+            {
+                try
+                {
+                    post.EuCurti = true;
+                    post.QuantidadeCurtidas++;
+
+                    //API
+                    using (APIHelper API = new APIHelper())
+                    {
+                        await API.PUT("api/posts/curtir/" + post.Id + "/?Curtir=true", null);
+                    }
+                }
+                catch (HTTPException EX) { }
+                catch (Exception EX) { }
+            }
+        }
+
         void ExecuteItemTappedCommand(Post post)
         {
             if (post != PostSelecionado)

@@ -1,5 +1,6 @@
 ﻿using NewgramMobile.Models;
 using NewgramMobile.Util;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -40,6 +41,9 @@ namespace NewgramMobile.ViewModels
         public Command EnviarComentarioCommand { get; set; }
         public Command ExcluirCommand { get; set; }
 
+        public DelegateCommand<PostInteracao> PerfilCommand { get; }
+
+
         public PostDetalheViewModel(INavigationService navigationService, IPageDialogService dialogService)
         {
             _navigationService = navigationService;
@@ -50,6 +54,16 @@ namespace NewgramMobile.ViewModels
             DenunciarCommand = new Command(async () => await ExecuteDenunciarCommand());
             EnviarComentarioCommand = new Command(async () => await ExecuteEnviarComentarioCommand());
             ExcluirCommand = new Command(async () => await ExecuteExcluirCommand());
+            PerfilCommand = new DelegateCommand<PostInteracao>(ExecutePerfilCommand);
+
+        }
+
+        async void ExecutePerfilCommand(PostInteracao postInteracao)
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("usuario", postInteracao.UsuarioDados);
+
+            await _navigationService.NavigateAsync("PerfilPage", navigationParams);
         }
 
         public async void BuscaComentarios()
@@ -90,6 +104,7 @@ namespace NewgramMobile.ViewModels
             NovoComentario.UsuarioId = App.UsuarioLogado.Id;
             NovoComentario.UsuarioDados = App.UsuarioLogado;
             NovoComentario.Data = DateTime.Now;
+            NovoComentario.Meu = true;
 
             try
             {
@@ -103,6 +118,7 @@ namespace NewgramMobile.ViewModels
 
             Comentarios.Add(NovoComentario);
 
+            Post.QuantidadeComentarios++;
             Post.EuComentei = true;
             NovoComentario = new PostInteracao();
         }

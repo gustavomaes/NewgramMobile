@@ -50,7 +50,6 @@
     <Compile Include="Util\DBHelper.cs" />
     <Compile Include="Util\FotoHelper.cs" />
     <Compile Include="Util\LoadingController.cs" />
-    <Compile Include="Util\PostController.cs" />
     <Compile Include="ViewModels\AlterarPageViewModel.cs" />
     <Compile Include="ViewModels\BuscaPageViewModel.cs" />
     <Compile Include="ViewModels\CadastroPageViewModel.cs" />
@@ -68,17 +67,11 @@
     <Compile Include="Views\CadastroPage.xaml.cs">
       <DependentUpon>CadastroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ComentarioParcial.xaml.cs">
-      <DependentUpon>ComentarioParcial.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PerfilPage.xaml.cs">
       <DependentUpon>PerfilPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PostagemPage.xaml.cs">
       <DependentUpon>PostagemPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PostCelula.xaml.cs">
-      <DependentUpon>PostCelula.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PostDetalhe.xaml.cs">
       <DependentUpon>PostDetalhe.xaml</DependentUpon>
@@ -271,19 +264,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ComentarioParcial.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\PerfilPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\PostCelula.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

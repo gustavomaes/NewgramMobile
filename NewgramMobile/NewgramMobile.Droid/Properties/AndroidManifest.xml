@@ -3,5 +3,5 @@
 	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="21" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="NewgramMobile.Droid" android:theme="@style/MyTheme"></application>
+	<application android:label="Newgram" android:theme="@style/MyTheme"></application>
 </manifest>

@@ -10,7 +10,7 @@ using ImageCircle.Forms.Plugin.Droid;
 namespace NewgramMobile.Droid
 {
     //[Activity(Label = "NewgramMobile", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    [Activity(Label = "NewgramMobile", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Newgram", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -19,10 +19,10 @@ namespace NewgramMobile.Droid
             ToolbarResource = Resource.Layout.toolbar;
 
             var resolverContainer = new SimpleContainer();
-
+            
             resolverContainer.Register<IDevice>(t => AndroidDevice.CurrentDevice);
 
-            //Erro ao voltar - AQUI -
+            Resolver.ResetResolver();
             Resolver.SetResolver(resolverContainer.GetResolver());
 
             base.OnCreate(bundle);

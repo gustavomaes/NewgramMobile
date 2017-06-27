@@ -92,6 +92,9 @@ namespace NewgramMobile
         {
             string Serializable = JsonConvert.SerializeObject(Data);
 
+            if (PreferenceExist(Name))
+                PreferenceRemove(Name);
+
             Current.Properties[Name] = Serializable;
             Current.SavePropertiesAsync();
 

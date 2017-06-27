@@ -8,6 +8,7 @@
              xmlns:local2="clr-namespace:NewgramMobile.Views;assembly=NewgramMobile"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              xmlns:imagemCircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Name="Root"
              x:Class="NewgramMobile.Views.FeedPage">
 
     <Grid>
@@ -29,7 +30,54 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <local2:PostCelula BindingContext="{Binding .}" />
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <imagemCircular:CircleImage Source="{Binding UsuarioDados.URLFoto}" Aspect="AspectFill" WidthRequest="30" HeightRequest="30"></imagemCircular:CircleImage>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding UsuarioDados.Nome}" TextColor="Black" LineBreakMode="TailTruncation" />
+                                <Label HorizontalOptions="End" VerticalOptions="CenterAndExpand" Text="{Binding Data, StringFormat='{0:dd/MM HH:mm}'}" TextColor="Green" />
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                          Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+
+                            </StackLayout>
+
+                            <!--Foto-->
+                            <Image Source="{Binding FotoURL}" WidthRequest="{Binding LarguraDP}" HeightRequest="{Binding LarguraDP}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.CurtirCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="2" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <!--Texto de descrição da foto-->
+                            <Label Text="{Binding Descricao}" TextColor="Black" LineBreakMode="WordWrap" />
+
+                            <!--Estatisticas (Curtidas, Comentários) e açãp de curtir - ICONIZE -->
+                            <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0">
+
+                                <!--Curtidas -->
+                                <Label HorizontalOptions="Start" Text="{Binding QuantidadeCurtidas}" TextColor="{Binding IconeCurtidaCor}" />
+                                <iconize:IconImage HeightRequest="20" Icon="{Binding IconeCurtida}" IconColor="{Binding IconeCurtidaCor}" WidthRequest="20" >
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CurtirCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </iconize:IconImage>
+
+                                <!--Espaço-->
+                                <StackLayout Padding="10, 0, 0, 0"></StackLayout>
+
+                                <!--Comentários -->
+                                <Label HorizontalOptions="Start" Text="{Binding QuantidadeComentarios}" TextColor="{Binding IconeComentarioCor}"/>
+                                <iconize:IconImage HeightRequest="20" Icon="{Binding IconeComentario}" IconColor="{Binding IconeComentarioCor}" WidthRequest="20" />
+
+                            </StackLayout>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

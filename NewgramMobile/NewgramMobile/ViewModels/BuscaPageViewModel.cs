@@ -49,6 +49,7 @@ namespace NewgramMobile.ViewModels
 
         public Command PesquisaCommand { get; }
 
+        public Command<Usuario> PerfilCommand { get; set; }
         public Command<Usuario> SeguirUsuarioCommand { get; }
         public Command<Usuario> DeixarSeguirUsuarioCommand { get; }
 
@@ -59,8 +60,17 @@ namespace NewgramMobile.ViewModels
             BuscaVisible = true;
             PesquisaCommand = new Command(ExecutePesquisaCommand);
 
+            PerfilCommand = new Command<Usuario>(ExecutePerfilCommand);
             SeguirUsuarioCommand = new Command<Usuario>(ExecuteSeguirUsuarioCommand);
             DeixarSeguirUsuarioCommand = new Command<Usuario>(ExecuteDeixarSeguirUsuarioCommand);
+        }
+
+        async void ExecutePerfilCommand(Usuario usuario)
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("usuario", usuario);
+
+            await _navigationService.NavigateAsync("NavigationPage/PerfilPage", navigationParams);
         }
 
         async void ExecuteSeguirUsuarioCommand(Usuario usuario)

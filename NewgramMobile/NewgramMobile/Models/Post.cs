@@ -5,10 +5,11 @@ using SQLite;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
+using Prism.Navigation;
 
 namespace NewgramMobile.Models
 {
-    public class Post : PostController
+    public class Post : BindableBase
     {
         [PrimaryKey]
         public int Id { get; set; }
@@ -53,7 +54,7 @@ namespace NewgramMobile.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        public int _QuantidadeCurtidas { get; set; }
+        private int _QuantidadeCurtidas { get; set; }
         public int QuantidadeCurtidas
         {
             get { return _QuantidadeCurtidas; }
@@ -68,7 +69,7 @@ namespace NewgramMobile.Models
         }
 
 
-        public int _QuantidadeComentarios { get; set; }
+        private int _QuantidadeComentarios { get; set; }
         public int QuantidadeComentarios
         {
             get { return _QuantidadeComentarios; }
