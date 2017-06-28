@@ -5,7 +5,13 @@
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryDark">@color/primaryDark</item>
     <item name="colorAccent">@color/accent</item>
+    
     <item name="android:windowBackground">@color/window_background</item>
-  </style>
+    <!--<item name="android:colorPressedHighlight">@color/ViewHighlighted</item>-->
+    <!--<item name="android:colorLongPressedHighlight">@color/ViewHighlighted</item>-->
+    <!--<item name="android:colorFocusedHighlight">@color/ViewHighlighted</item>-->
+    <item name="android:colorActivatedHighlight">@color/ViewHighlighted</item>
+    <!--<item name="android:activatedBackgroundIndicator">@color/ViewHighlighted</item>-->
+  </style>  
 </resources>
 

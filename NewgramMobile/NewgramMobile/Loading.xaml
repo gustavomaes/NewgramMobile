@@ -20,14 +20,14 @@
             <ActivityIndicator x:Name="actLoading" 
                                VerticalOptions="EndAndExpand" 
                                HorizontalOptions="Center" 
-                               Color="Blue" 
+                               Color="#4dd0e1" 
                                IsRunning="{Binding ActionIsRunning}" 
                                IsVisible="{Binding ActionIsVisible}" />
             
             <Label x:Name="txtLoading" 
                    VerticalOptions="StartAndExpand"  
                    HorizontalOptions="Center" 
-                   TextColor="Black" 
+                   TextColor="#455a64" 
                    IsVisible="{Binding TextIsVisible}" 
                    IsEnabled="{Binding TextIsEnabled}" 
                    Text="{Binding Text}"/>

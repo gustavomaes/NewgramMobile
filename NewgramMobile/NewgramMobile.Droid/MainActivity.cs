@@ -35,7 +35,7 @@ namespace NewgramMobile.Droid
             ImageCircleRenderer.Init();
             App._LarguraDP = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
 
-            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+            //FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
 
             LoadApplication(new App(new AndroidInitializer()));
         }

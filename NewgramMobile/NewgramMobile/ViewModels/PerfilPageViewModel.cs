@@ -36,6 +36,13 @@ namespace NewgramMobile.ViewModels
             set { SetProperty(ref _heightDP, value); }
         }
 
+        private int _heightHeaderDP;
+        public int HeightHeaderDP
+        {
+            get { return _heightHeaderDP; }
+            set { SetProperty(ref _heightHeaderDP, value); }
+        }
+
         private List<Post> _posts;
         public List<Post> Posts
         {
@@ -63,12 +70,7 @@ namespace NewgramMobile.ViewModels
             _dialogService = dialogService;
 
             HeightDP = App.LarguraDP / 3;
-
-            //TODO - Remover depois de acrescentar MasterPage
-            Usuario = App.UsuarioLogado;
-
-            IdUsuario = Usuario.Id;
-            //TODO - Remover depois de acrescentar MasterPage
+            HeightHeaderDP = App.LarguraDP;
 
             ItemTappedCommand = new Command<Post>(ExecuteItemTappedCommand);
 
@@ -80,10 +82,7 @@ namespace NewgramMobile.ViewModels
             SeguindoCommand = new Command(ExecuteSeguindoCommand);
             SeguidoresCommand = new Command(ExecuteSeguidoresCommand);
             AlterarCommand = new Command(ExecuteAlterarCommand);
-
-            //REMOVER
-            BuscaDadosUsuario();
-            BuscaPostsUsuario();
+            
         }
 
         async void ExecuteAlterarCommand(object obj)
@@ -91,12 +90,13 @@ namespace NewgramMobile.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", Usuario);
 
-            await _navigationService.NavigateAsync("AlterarPage", navigationParams, false);
+            await _navigationService.NavigateAsync("AlterarPage", navigationParams);
         }
 
         async void ExecuteSeguidoresCommand(object obj)
         {
             var navigationParams = new NavigationParameters();
+            navigationParams.Add("busca", false);
             navigationParams.Add("tipo", "seguidores");
             navigationParams.Add("UsuarioId", IdUsuario);
 
@@ -106,6 +106,7 @@ namespace NewgramMobile.ViewModels
         async void ExecuteSeguindoCommand()
         {
             var navigationParams = new NavigationParameters();
+            navigationParams.Add("busca", false);
             navigationParams.Add("tipo", "seguidos");
             navigationParams.Add("UsuarioId", IdUsuario);
 
@@ -123,7 +124,7 @@ namespace NewgramMobile.ViewModels
                     {
                         using (FotoHelper Foto = new FotoHelper())
                         {
-                            await Foto.TirarFoto(200, 200);
+                            await Foto.TirarFoto(App.LarguraTela,  App.LarguraTela - (App.LarguraTela / 3));
 
                             if (Foto.FotoColetada)
                             {
@@ -139,7 +140,7 @@ namespace NewgramMobile.ViewModels
                     {
                         using (FotoHelper Foto = new FotoHelper())
                         {
-                            await Foto.BuscarFoto(200, 200);
+                            await Foto.BuscarFoto(App.LarguraTela, App.LarguraTela);
 
                             if (Foto.FotoColetada)
                             {
@@ -286,25 +287,18 @@ namespace NewgramMobile.ViewModels
             catch (Exception EX) { }
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-        }
+        public void OnNavigatedFrom(NavigationParameters parameters) { }
 
-        public async void OnNavigatedTo(NavigationParameters parameters)
+        public void OnNavigatedTo(NavigationParameters parameters) { }
+
+        public async void OnNavigatingTo(NavigationParameters parameters)
         {
-            if (parameters["usuario"] != null)
-                Usuario = (Usuario)parameters["usuario"];
-            else
-                Usuario = App.UsuarioLogado;
+            Usuario = (Usuario)parameters["usuario"];
 
             IdUsuario = Usuario.Id;
 
             await BuscaDadosUsuario();
             await BuscaPostsUsuario();
-        }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
         }
     }
 }

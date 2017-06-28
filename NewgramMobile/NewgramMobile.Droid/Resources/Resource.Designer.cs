@@ -2587,31 +2587,34 @@ namespace NewgramMobile.Droid
 		{
 			
 			// aapt resource value: 0x7f080068
-			public const int abc_background_cache_hint_selector_material_dark = 2131230824;
+			public const int ViewHighlighted = 2131230824;
 			
-			// aapt resource value: 0x7f080069
-			public const int abc_background_cache_hint_selector_material_light = 2131230825;
+			// aapt resource value: 0x7f08006b
+			public const int abc_background_cache_hint_selector_material_dark = 2131230827;
 			
-			// aapt resource value: 0x7f08006a
-			public const int abc_color_highlight_material = 2131230826;
+			// aapt resource value: 0x7f08006c
+			public const int abc_background_cache_hint_selector_material_light = 2131230828;
+			
+			// aapt resource value: 0x7f08006d
+			public const int abc_color_highlight_material = 2131230829;
 			
 			// aapt resource value: 0x7f080015
 			public const int abc_input_method_navigation_guard = 2131230741;
 			
-			// aapt resource value: 0x7f08006b
-			public const int abc_primary_text_disable_only_material_dark = 2131230827;
-			
-			// aapt resource value: 0x7f08006c
-			public const int abc_primary_text_disable_only_material_light = 2131230828;
-			
-			// aapt resource value: 0x7f08006d
-			public const int abc_primary_text_material_dark = 2131230829;
-			
 			// aapt resource value: 0x7f08006e
-			public const int abc_primary_text_material_light = 2131230830;
+			public const int abc_primary_text_disable_only_material_dark = 2131230830;
 			
 			// aapt resource value: 0x7f08006f
-			public const int abc_search_url_text = 2131230831;
+			public const int abc_primary_text_disable_only_material_light = 2131230831;
+			
+			// aapt resource value: 0x7f080070
+			public const int abc_primary_text_material_dark = 2131230832;
+			
+			// aapt resource value: 0x7f080071
+			public const int abc_primary_text_material_light = 2131230833;
+			
+			// aapt resource value: 0x7f080072
+			public const int abc_search_url_text = 2131230834;
 			
 			// aapt resource value: 0x7f080016
 			public const int abc_search_url_text_normal = 2131230742;
@@ -2622,11 +2625,11 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f080018
 			public const int abc_search_url_text_selected = 2131230744;
 			
-			// aapt resource value: 0x7f080070
-			public const int abc_secondary_text_material_dark = 2131230832;
+			// aapt resource value: 0x7f080073
+			public const int abc_secondary_text_material_dark = 2131230835;
 			
-			// aapt resource value: 0x7f080071
-			public const int abc_secondary_text_material_light = 2131230833;
+			// aapt resource value: 0x7f080074
+			public const int abc_secondary_text_material_light = 2131230836;
 			
 			// aapt resource value: 0x7f080066
 			public const int accent = 2131230822;
@@ -2703,8 +2706,8 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f080062
 			public const int calendar_text_selected = 2131230818;
 			
-			// aapt resource value: 0x7f080072
-			public const int calendar_text_selector = 2131230834;
+			// aapt resource value: 0x7f080075
+			public const int calendar_text_selector = 2131230837;
 			
 			// aapt resource value: 0x7f080063
 			public const int calendar_text_unselectable = 2131230819;
@@ -2724,8 +2727,8 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f080008
 			public const int common_action_bar_splitter = 2131230728;
 			
-			// aapt resource value: 0x7f080073
-			public const int common_google_signin_btn_text_dark = 2131230835;
+			// aapt resource value: 0x7f080076
+			public const int common_google_signin_btn_text_dark = 2131230838;
 			
 			// aapt resource value: 0x7f080009
 			public const int common_google_signin_btn_text_dark_default = 2131230729;
@@ -2739,8 +2742,8 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f08000a
 			public const int common_google_signin_btn_text_dark_pressed = 2131230730;
 			
-			// aapt resource value: 0x7f080074
-			public const int common_google_signin_btn_text_light = 2131230836;
+			// aapt resource value: 0x7f080077
+			public const int common_google_signin_btn_text_light = 2131230839;
 			
 			// aapt resource value: 0x7f08000d
 			public const int common_google_signin_btn_text_light_default = 2131230733;
@@ -2754,8 +2757,8 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f08000e
 			public const int common_google_signin_btn_text_light_pressed = 2131230734;
 			
-			// aapt resource value: 0x7f080075
-			public const int common_plus_signin_btn_text_dark = 2131230837;
+			// aapt resource value: 0x7f080078
+			public const int common_plus_signin_btn_text_dark = 2131230840;
 			
 			// aapt resource value: 0x7f080000
 			public const int common_plus_signin_btn_text_dark_default = 2131230720;
@@ -2769,8 +2772,8 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f080001
 			public const int common_plus_signin_btn_text_dark_pressed = 2131230721;
 			
-			// aapt resource value: 0x7f080076
-			public const int common_plus_signin_btn_text_light = 2131230838;
+			// aapt resource value: 0x7f080079
+			public const int common_plus_signin_btn_text_light = 2131230841;
 			
 			// aapt resource value: 0x7f080004
 			public const int common_plus_signin_btn_text_light_default = 2131230724;
@@ -2825,6 +2828,12 @@ namespace NewgramMobile.Droid
 			
 			// aapt resource value: 0x7f08002a
 			public const int dim_foreground_material_light = 2131230762;
+			
+			// aapt resource value: 0x7f080069
+			public const int entry_background = 2131230825;
+			
+			// aapt resource value: 0x7f08006a
+			public const int entry_border = 2131230826;
 			
 			// aapt resource value: 0x7f08002b
 			public const int foreground_material_dark = 2131230763;
@@ -2934,11 +2943,11 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f08004c
 			public const int switch_thumb_disabled_material_light = 2131230796;
 			
-			// aapt resource value: 0x7f080077
-			public const int switch_thumb_material_dark = 2131230839;
+			// aapt resource value: 0x7f08007a
+			public const int switch_thumb_material_dark = 2131230842;
 			
-			// aapt resource value: 0x7f080078
-			public const int switch_thumb_material_light = 2131230840;
+			// aapt resource value: 0x7f08007b
+			public const int switch_thumb_material_light = 2131230843;
 			
 			// aapt resource value: 0x7f08004d
 			public const int switch_thumb_normal_material_dark = 2131230797;
@@ -3956,14 +3965,17 @@ namespace NewgramMobile.Droid
 			// aapt resource value: 0x7f0200cd
 			public const int mr_ic_play_light = 2130837709;
 			
-			// aapt resource value: 0x7f0200d0
-			public const int notification_template_icon_bg = 2130837712;
+			// aapt resource value: 0x7f0200d1
+			public const int notification_template_icon_bg = 2130837713;
 			
 			// aapt resource value: 0x7f0200ce
 			public const int photo = 2130837710;
 			
 			// aapt resource value: 0x7f0200cf
 			public const int PinoFoto = 2130837711;
+			
+			// aapt resource value: 0x7f0200d0
+			public const int RoundedCornerEntry = 2130837712;
 			
 			static Drawable()
 			{

@@ -97,12 +97,12 @@ namespace NewgramMobile.Models
         [Ignore]
         public string IconeCurtida { get { return (EuCurti ? "fa-heart" : "fa-heart-o"); } }
         [Ignore]
-        public Color IconeCurtidaCor { get { return (EuCurti ? Color.Green : Color.Blue); } }
+        public Color IconeCurtidaCor { get { return (EuCurti ? Color.Red : Color.White); } }
 
         [Ignore]
         public string IconeComentario { get { return (EuComentei ? "fa-comment" : "fa-comment-o"); } }
         [Ignore]
-        public Color IconeComentarioCor { get { return (EuComentei ? Color.Green : Color.Blue); } }
+        public Color IconeComentarioCor { get { return (EuComentei ? Color.Red : Color.White); } }
 
         [Ignore]
         public int LarguraDP { get { return App.LarguraDP; } }

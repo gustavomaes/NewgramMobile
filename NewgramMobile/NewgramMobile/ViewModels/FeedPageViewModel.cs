@@ -75,7 +75,7 @@ namespace NewgramMobile.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", post.UsuarioDados);
 
-            await _navigationService.NavigateAsync("NavigationPage/PerfilPage", navigationParams);
+            await _navigationService.NavigateAsync("PerfilPage", navigationParams, false);
         }
 
         async void ExecuteCurtirCommand(Post post)

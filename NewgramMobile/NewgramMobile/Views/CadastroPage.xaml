@@ -1,38 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Custom="clr-namespace:NewgramMobile.Custom"
              xmlns:local="clr-namespace:NewgramMobile"             
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="NewgramMobile.Views.CadastroPage">
 
-    <ContentPage.Content>
+    <Grid>
 
-        <Grid>
+        <ScrollView HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand">
 
-            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="Center">
 
-                <StackLayout Padding="40">
+                <Label Text="Cadastro" 
+                       Margin="0,40,0,0"
+                       Style="{StaticResource Titulo3}" 
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand" />
 
-                    <Label Text="Cadastro de novo Usuário." Style="{StaticResource Titulo3}" HorizontalOptions="CenterAndExpand" />
+                <Custom:RoundedEntry Text="{Binding Cadastro.Nome}"
+                                     Margin="0,40,0,0"
+                                     Keyboard="Text" 
+                                     Placeholder="Nome" />
 
-                    <StackLayout HeightRequest="40" />
+                <Custom:RoundedEntry Text="{Binding Cadastro.Email}" 
+                                     Keyboard="Email" 
+                                     Placeholder="E-mail" />
 
-                    <Entry x:Name="entNome" Text="{Binding Cadastro.Nome}" Keyboard="Text" Placeholder="Nome" />
-                    <Entry x:Name="entEmail" Text="{Binding Cadastro.Email}" Keyboard="Email" Placeholder="E-mail" />
-                    <Entry x:Name="entSenha" Text="{Binding Cadastro.Senha}" IsPassword="True" Placeholder="Senha" />
+                <Custom:RoundedEntry Text="{Binding Cadastro.Senha}" 
+                                     IsPassword="True" 
+                                     Placeholder="Senha" />
+            
+                <Custom:RoundedButton Text="Cadastrar"
+                                      Margin="0,20,0,0"
+                                      Command="{Binding CadastroCommand}" />
 
-                    <StackLayout HeightRequest="20" />
+                <Custom:RoundedButton Text="Voltar" 
+                                      Command="{Binding VoltarCommand}"/>
 
-                    <Button Text="Cadastrar" Command="{Binding CadastroCommand}" />
-                    <Button Text="Voltar" Command="{Binding VoltarCommand}"/>
+            </StackLayout>
+        </ScrollView>
 
-                </StackLayout>
-            </ScrollView>
+        <local:Loading/>
 
-            <local:Loading/>
-
-        </Grid>
-    </ContentPage.Content>
-    
+    </Grid>
 </ContentPage>

@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NewgramMobile;assembly=NewgramMobile"
+             xmlns:Custom="clr-namespace:NewgramMobile.Custom"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:imagemCircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              x:Class="NewgramMobile.Views.BuscaPage"
+             BackgroundColor="White"
              x:Name="Root"
              Title="{Binding Title}">
 
@@ -27,7 +29,8 @@
                     <DataTemplate>
                         <ViewCell>
 
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="5">
 
                                 <!--Foto do Perfil-->
                                 <imagemCircular:CircleImage Source="{Binding URLFoto}" 
@@ -36,45 +39,79 @@
                                                             HeightRequest="50" 
                                                             HorizontalOptions="Start" 
                                                             VerticalOptions="Center">
+                                    
                                     <imagemCircular:CircleImage.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                                NumberOfTapsRequired="1"
-                                                Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
-                                                CommandParameter="{Binding .}" />
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                              Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                              CommandParameter="{Binding .}" />
                                     </imagemCircular:CircleImage.GestureRecognizers>
+                                    
                                 </imagemCircular:CircleImage>
 
                                 <!--Nome-->
-                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Nome}" FontSize="Medium" VerticalOptions="Center" >
+                                <Label HorizontalOptions="StartAndExpand" 
+                                       Text="{Binding Nome}" 
+                                       FontSize="Medium" 
+                                       VerticalOptions="Center"
+                                       LineBreakMode="TailTruncation">
+                                    
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                                NumberOfTapsRequired="1"
-                                                Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
-                                                CommandParameter="{Binding .}" />
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                              Command="{Binding BindingContext.PerfilCommand, Source={x:Reference Root}}"
+                                                              CommandParameter="{Binding .}" />
                                     </Label.GestureRecognizers>
+                                    
                                 </Label>
 
-                                <StackLayout IsVisible="{Binding NaoMeu}"  HorizontalOptions="End" VerticalOptions="Center">
+                                <StackLayout IsVisible="{Binding NaoMeu}"  
+                                             HorizontalOptions="End" 
+                                             VerticalOptions="Center">
 
-                                    <StackLayout IsVisible="{Binding NaoSigo}" BackgroundColor="Blue" Padding="3" Margin="3" VerticalOptions="Center">
+                                    <Custom:RoundedButton IsVisible="{Binding NaoSigo}"
+                                                          Text="Seguir"
+                                                          WidthRequest="150"
+                                                          HeightRequest="40"
+                                                          Command="{Binding BindingContext.SeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}" />
+
+                                    <Custom:RoundedButton IsVisible="{Binding Sigo}"
+                                                          Text="Deixar de Seguir"
+                                                          WidthRequest="150"
+                                                          HeightRequest="40"
+                                                          BackgroundColor="#006064"
+                                                          Command="{Binding BindingContext.DeixarSeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                          CommandParameter="{Binding .}" />
+
+                                    <!--<StackLayout IsVisible="{Binding NaoSigo}" 
+                                                 BackgroundColor="Blue" 
+                                                 Padding="3" Margin="3" 
+                                                 VerticalOptions="Center">
+                                        
                                         <Label Text="Seguir" TextColor="White" />
+                                        
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                NumberOfTapsRequired="1"
-                                                Command="{Binding BindingContext.SeguirUsuarioCommand, Source={x:Reference Root}}"
-                                                CommandParameter="{Binding .}" />
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
 
-                                    <StackLayout IsVisible="{Binding Sigo}" BackgroundColor="Red" Padding="3" Margin="3" VerticalOptions="Center">
-                                        <Label Text="Deixar de Seguir" TextColor="White" />
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                NumberOfTapsRequired="1"
-                                                Command="{Binding BindingContext.DeixarSeguirUsuarioCommand, Source={x:Reference Root}}"
-                                                CommandParameter="{Binding .}" />
+                                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                  Command="{Binding BindingContext.SeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                                  CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
-                                    </StackLayout>
+                                        
+                                    </StackLayout>-->
+
+                                    <!--<StackLayout IsVisible="{Binding Sigo}" 
+                                                 BackgroundColor="Red" 
+                                                 Padding="3" Margin="3" 
+                                                 VerticalOptions="Center">
+                                        
+                                        <Label Text="Deixar de Seguir" TextColor="White" />
+                                        
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                  Command="{Binding BindingContext.DeixarSeguirUsuarioCommand, Source={x:Reference Root}}"
+                                                                  CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                        
+                                    </StackLayout>-->
 
                                 </StackLayout>
 

@@ -47,9 +47,9 @@ namespace NewgramMobile.ViewModels
             set { SetProperty(ref _usuarios, value); }
         }
 
-        public Command PesquisaCommand { get; }
+        public Command PesquisaCommand { get; set; }
 
-        public Command<Usuario> PerfilCommand { get; set; }
+        public Command<Usuario> PerfilCommand { get; }
         public Command<Usuario> SeguirUsuarioCommand { get; }
         public Command<Usuario> DeixarSeguirUsuarioCommand { get; }
 
@@ -57,9 +57,7 @@ namespace NewgramMobile.ViewModels
         {
             _navigationService = navigationService;
 
-            BuscaVisible = true;
             PesquisaCommand = new Command(ExecutePesquisaCommand);
-
             PerfilCommand = new Command<Usuario>(ExecutePerfilCommand);
             SeguirUsuarioCommand = new Command<Usuario>(ExecuteSeguirUsuarioCommand);
             DeixarSeguirUsuarioCommand = new Command<Usuario>(ExecuteDeixarSeguirUsuarioCommand);
@@ -70,7 +68,7 @@ namespace NewgramMobile.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", usuario);
 
-            await _navigationService.NavigateAsync("NavigationPage/PerfilPage", navigationParams);
+            await _navigationService.NavigateAsync("PerfilPage", navigationParams, false);
         }
 
         async void ExecuteSeguirUsuarioCommand(Usuario usuario)
@@ -159,22 +157,28 @@ namespace NewgramMobile.ViewModels
 
         public async void OnNavigatingTo(NavigationParameters parameters)
         {
-            BuscaVisible = false;
-
-            tipo = (string)parameters["tipo"];
-            UsuarioId = (int)parameters["UsuarioId"];
-
-            if (tipo == "seguidores")
+            if ((bool)parameters["busca"])
             {
-                await BuscaSeguidores(UsuarioId);
-                Title = "Seguidores";
+                BuscaVisible = true;
             }
-            else if (tipo == "seguidos")
+            else
             {
-                await BuscaSeguidos(UsuarioId);
-                Title = "Seguidos";
-            }
+                BuscaVisible = false;
 
+                tipo = (string)parameters["tipo"];
+                UsuarioId = (int)parameters["UsuarioId"];
+
+                if (tipo == "seguidores")
+                {
+                    await BuscaSeguidores(UsuarioId);
+                    Title = "Seguidores";
+                }
+                else if (tipo == "seguidos")
+                {
+                    await BuscaSeguidos(UsuarioId);
+                    Title = "Seguidos";
+                }
+            }
         }
     }
 }

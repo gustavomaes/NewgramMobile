@@ -89,7 +89,7 @@ namespace NewgramMobile.ViewModels
             }
             catch (Exception EX)
             {
-                await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro ao entrar, verifique seus dados e tente novamente." + EX, "OK");
+                await _dialogService.DisplayAlertAsync("Erro", "Ocorreu um erro ao entrar, verifique seus dados e tente novamente.", "OK");
                 Finaliza();
             }
             

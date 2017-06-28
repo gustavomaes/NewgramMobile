@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:local="clr-namespace:NewgramMobile"
 			 xmlns:local2="clr-namespace:NewgramMobile.Views"
+			 xmlns:Cusom="clr-namespace:NewgramMobile.Custom"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"                          
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:imagemCircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"             
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             BackgroundColor="#455a64"
+             Title="Perfil"
              x:Class="NewgramMobile.Views.PerfilPage">
 
     <Grid>
@@ -19,97 +22,119 @@
                           FlowItemTappedCommand="{Binding ItemTappedCommand}">
 
             <flv:FlowListView.Header>
-                <StackLayout Padding="0">
-                    <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <Grid>
+                        <Image Source="{Binding Usuario.URLFoto}"
+                               HeightRequest="{Binding HeightHeaderDP}" />
 
-                        <!--FOTO PERFIL-->
-                        <StackLayout Orientation="Vertical" WidthRequest="80" Padding="0">
+                        <BoxView HeightRequest="{Binding HeightHeaderDP}"
+                                 Color="#37474f"
+                                 Opacity="0.65" />
 
-                            <imagemCircular:CircleImage Source="{Binding Usuario.URLFoto}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></imagemCircular:CircleImage>
-
-                            <Label Text="Mudar Foto" 
-                                   TextColor="Green"
-                                   HorizontalOptions="Center" 
-                                   IsVisible="{Binding Usuario.Meu}">
-                                
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                          Command="{Binding FotoCommand}"/>
-                                </StackLayout.GestureRecognizers>
-                                
-                            </Label>
-
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-
-                        <StackLayout Orientation="Vertical" Padding="0">
+                        <StackLayout Orientation="Vertical"
+                                     VerticalOptions="End">
 
                             <!--NOME-->
-                            <Label Text="{Binding Usuario.Nome}" FontSize="20" TextColor="Black"/>
+                            <Label Text="{Binding Usuario.Nome}"
+                                   Margin="0,85,0,0"
+                                   FontSize="Large"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   TextColor="#4dd0e1"/>
 
-                            <!--POSTS-->
-                            <StackLayout Orientation="Horizontal" Padding="20, 0, 0, 0">
-                                <Label VerticalOptions="Center">Tem</Label>
-                                <Label Text="{Binding Usuario.QuantidadePosts}" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
-                                <Label VerticalOptions="Center">fotos postadas</Label>
+                            <StackLayout IsVisible="{Binding Usuario.NaoMeu}"
+                                         Margin="0,10,0,0">
+
+                                <Cusom:RoundedButton Text="Seguir" 
+                                                     HorizontalOptions="CenterAndExpand"
+                                                     BorderColor="Black"
+                                                     IsVisible="{Binding Usuario.NaoSigo}"
+                                                     Command="{Binding SeguirUsuarioCommand}"/>
+
+                                <Cusom:RoundedButton Text="Deixar de Seguir" 
+                                                     HorizontalOptions="CenterAndExpand"
+                                                     IsVisible="{Binding Usuario.Sigo}"
+                                                     Command="{Binding DeixarSeguirUsuarioCommand}"/>
+
                             </StackLayout>
 
-                            <!--SEGUINDO-->
-                            <StackLayout Orientation="Horizontal" Padding="20, 0, 0, 0">
-                                <Label VerticalOptions="Center">Segue</Label>
-                                <Label Text="{Binding Usuario.QuantidadeSeguindo}" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
-                                <Label VerticalOptions="Center">usuários</Label>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SeguindoCommand}"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
 
-                            <!--SEGUIDORES-->
-                            <StackLayout Orientation="Horizontal" Padding="20, 0, 0, 0">
-                                <Label VerticalOptions="Center">É seguido por</Label>
-                                <Label Text="{Binding Usuario.QuantidadeSeguidores}" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
-                                <Label VerticalOptions="Center">usuários</Label>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SeguidoresCommand}"/>
-                                </StackLayout.GestureRecognizers>
+                            <Cusom:RoundedButton IsVisible="{Binding Usuario.Meu}"
+                                                 Margin="0,10,0,0"
+                                                 Text="Trocar Foto"
+                                                 HorizontalOptions="CenterAndExpand"
+                                                 Command="{Binding FotoCommand}"/>
+
+
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="Center">
+
+                                <StackLayout Orientation="Vertical"
+                                             Padding="10">
+
+                                    <Label Text="{Binding Usuario.QuantidadePosts}"
+                                           FontSize="Large" 
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" />
+                                    
+                                    <Label Text="publicações"
+                                           FontSize="Small" 
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"/>
+
+                                    
+
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical"
+                                             Padding="10">
+
+                                    <Label Text="{Binding Usuario.QuantidadeSeguidores}"
+                                           FontSize="Large" 
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" />
+                                    
+                                    <Label Text="seguidores"
+                                           FontSize="Small" 
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"/>
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SeguidoresCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical"
+                                             Padding="10">
+
+                                    <Label Text="{Binding Usuario.QuantidadeSeguindo}"
+                                           FontSize="Large" 
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center" />
+                                    
+                                    <Label Text="seguindo"
+                                           FontSize="Small" 
+                                           TextColor="White"
+                                           HorizontalTextAlignment="Center"/>
+
+
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding SeguindoCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+
                             </StackLayout>
+                            
                         </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Vertical" IsVisible="{Binding Usuario.NaoMeu}">
-
-                        <Button Text="Seguir" 
-                                HorizontalOptions="CenterAndExpand" 
-                                BackgroundColor="Blue" 
-                                TextColor="White"
-                                IsVisible="{Binding Usuario.NaoSigo}"
-                                Command="{Binding SeguirUsuarioCommand}"/>
-
-                        <Button Text="Deixar de Seguir" 
-                                HorizontalOptions="CenterAndExpand" 
-                                BackgroundColor="Red" 
-                                TextColor="White"  
-                                IsVisible="{Binding Usuario.Sigo}"
-                                Command="{Binding DeixarSeguirUsuarioCommand}"/>
-                    </StackLayout>
-
+                        
+                    </Grid>
                     
-                    <StackLayout Orientation="Vertical" IsVisible="{Binding Usuario.Meu}">
-
-                        <Button Text="Alterar meus dados"
-                                Command="{Binding AlterarCommand}"/>
-
-                        <Button Text="Sair" 
-                                BackgroundColor="Black" 
-                                TextColor="Yellow" 
-                                FontSize="Small"
-                                Command="{Binding LogoffCommand}"/>
-
-                    </StackLayout>
-
-
                 </StackLayout>
             </flv:FlowListView.Header>
 
@@ -120,15 +145,6 @@
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
 
-            <flv:FlowListView.Footer>
-                <Button Text="CANCELAR CONTA" 
-                        BackgroundColor="Red" 
-                        TextColor="White" 
-                        FontSize="Small" 
-                        IsVisible="{Binding Usuario.Meu}"
-                        Command="{Binding CancelarCommand}"/>
-            </flv:FlowListView.Footer>
-            
         </flv:FlowListView>
 
         <local:Loading/>

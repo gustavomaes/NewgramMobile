@@ -1,37 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Custom="clr-namespace:NewgramMobile.Custom"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"             
              xmlns:local="clr-namespace:NewgramMobile"
              x:Class="NewgramMobile.Views.LoginPage">
-    <ContentPage.Content>
-        <Grid>
 
-            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid>
+        <ScrollView HorizontalOptions="FillAndExpand" 
+                VerticalOptions="Fill">
 
-                <StackLayout Padding="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Padding="0,40,0,0"
+                         HorizontalOptions="Center">
 
-                    <Image Source="Logo.png"/>
+                <Image Source="Logo.png"/>
 
-                    <Label Text="Seja bem vindo ao Newgram" Style="{StaticResource Titulo}" HorizontalOptions="CenterAndExpand"/>
-                    <Label Text="App desenvolvido no treinamento" HorizontalOptions="CenterAndExpand"/>
-                    <Label Text="Academia Xamarin" Style="{StaticResource Titulo}" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Newgram" 
+                       Style="{StaticResource Titulo3}" 
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"/>
 
-                    <StackLayout HeightRequest="10" />
+                <Custom:RoundedEntry Text="{Binding Usuario.Email}"
+                                     Margin="0,25,0,0"
+                                     Keyboard="Email" 
+                                     Placeholder="Email"/>
 
-                    <Entry x:Name="entEmail" Text="{Binding Usuario.Email}" Keyboard="Email" Placeholder="Email"/>
-                    <Entry x:Name="entSenha" Text="{Binding Usuario.Senha}" IsPassword="True" Placeholder="Senha"/>
 
-                    <Button Text="Entrar" Command="{Binding EntrarCommand}"/>
-                    <Button Text="Cadastrar" Style="{StaticResource Importante}" Command="{Binding CadastrarCommand}"/>
+                <Custom:RoundedEntry Text="{Binding Usuario.Senha}"
+                                     IsPassword="True" 
+                                     Placeholder="Senha"/>
 
-                </StackLayout>
+                <Custom:RoundedButton Text="Entrar" 
+                                      Margin="0,10,0,0"
+                                      Command="{Binding EntrarCommand}"
+                                      WidthRequest="300"/>
 
-            </ScrollView>
+                <Label Text="Cadastrar"
+                       Style="{StaticResource Titulo}" 
+                       TextColor="White"
+                       VerticalOptions="End"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,25,0,0">
+                    
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding CadastrarCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
+            </StackLayout>
 
-            <local:Loading x:Name="Load" />
+        </ScrollView>
 
-        </Grid>
-    </ContentPage.Content>
+        <local:Loading/>
+        
+    </Grid>
 </ContentPage>

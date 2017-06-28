@@ -65,8 +65,9 @@ namespace NewgramMobile
             LarguraTela = Resolver.Resolve<IDevice>().Display.Width;
             AlturaTela = Resolver.Resolve<IDevice>().Display.Height;
             LarguraDP = _LarguraDP;
+
             if (Logado)
-                NavigationService.NavigateAsync("NavigationPage/HomePage");
+                NavigationService.NavigateAsync("NavigationPage/MasterPage/FeedPage");
             else
                 NavigationService.NavigateAsync("LoginPage");
             
@@ -77,13 +78,13 @@ namespace NewgramMobile
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<LoginPage>();
             Container.RegisterTypeForNavigation<CadastroPage>();
-            Container.RegisterTypeForNavigation<HomePage>();
             Container.RegisterTypeForNavigation<FeedPage>();
             Container.RegisterTypeForNavigation<PostagemPage>();
             Container.RegisterTypeForNavigation<BuscaPage>();
             Container.RegisterTypeForNavigation<PerfilPage>();
             Container.RegisterTypeForNavigation<AlterarPage>();
             Container.RegisterTypeForNavigation<PostDetalhe>();
+            Container.RegisterTypeForNavigation<MasterPage>();
         }
 
         #region Preferences
